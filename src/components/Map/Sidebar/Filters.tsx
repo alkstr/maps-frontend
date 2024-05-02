@@ -1,4 +1,5 @@
 import { fetchAreas } from "@/api";
+import { Area } from "@/domain";
 import { FormEvent } from "react";
 
 interface FiltersProps {
@@ -15,17 +16,18 @@ export const Filters = (props: FiltersProps) => {
             opi: formData.get("opi")!.toString() ?? "",
         };
 
-        const areas = await fetchAreas(params);
-        props.setAreas(areas);
+        fetchAreas(params)
+            .then((areas: Area[]) => props.setAreas(areas))
+            .catch(() => alert("Не удалось загрузить данные карты с сервера"));
     }
-    
+
     return (
         <form className="flex flex-col gap-4" onSubmit={onSubmit}>
             <section className="text-2xl font-semibold border-b-2">Поиск участков</section>
 
             <TextFilter label="ОПИ" name="opi" />
             <CheckBoxFilter label="Не распределён" name="is_not_license" />
-            
+
             <button className="bg-gray-200 rounded p-1 hover:bg-gray-300 active:bg-gray-400" type="submit">Найти</button>
         </form>
     )

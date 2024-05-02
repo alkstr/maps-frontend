@@ -28,9 +28,12 @@ export const Map = () => {
 
   useEffect(
     () => {
-      fetchAreas({ is_not_license: "", opi: "" })
-        .then((a: Area[]) => setAreas(a))
-    }, []);
+      if (ymaps && hint && controls) {
+        fetchAreas({ is_not_license: "", opi: "" })
+          .then((a: Area[]) => setAreas(a))
+          .catch(() => alert("Не удалось загрузить данные карты с сервера"));
+      }
+    }, [ymaps, hint, controls]);
 
   if (!ymaps || !hint || !controls) return <Loader />
 
