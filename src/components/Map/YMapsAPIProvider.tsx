@@ -13,14 +13,20 @@ export type Hint = ReactifiedModule<
   typeof import("@yandex/ymaps3-types/packages/hint")
 >;
 
+export type Controls = ReactifiedModule<
+  typeof import("@yandex/ymaps3-types/packages/controls")
+>;
+
 type YMapsContextType = {
   ymaps: YMaps | null;
   hint: Hint | null;
+  controls: Controls | null;
 };
 
 export const YMapsContext = createContext<YMapsContextType>({
   ymaps: null,
   hint: null,
+  controls: null,
 });
 
 export const YMapsAPIProvider: React.FC<{
@@ -28,8 +34,9 @@ export const YMapsAPIProvider: React.FC<{
 }> = (props) => {
   const [ymaps, setYMaps] = useState<YMaps | null>(null);
   const [hint, setHint] = useState<Hint | null>(null);
+  const [controls, setControls] = useState<Controls | null>(null);
 
-  const contextValue = useMemo(() => ({ ymaps, hint }), [ymaps, hint]);
+  const contextValue = useMemo(() => ({ ymaps, hint, controls }), [ymaps, hint, controls]);
 
   return <YMapsContext.Provider value={contextValue}>
     <Script
@@ -39,10 +46,11 @@ export const YMapsAPIProvider: React.FC<{
           ymaps3.import("@yandex/ymaps3-reactify"),
           ymaps3.ready,
         ]);
-        
+
         const reactify = ymaps3React.reactify.bindTo(React, ReactDOM);
         setYMaps(reactify.module(ymaps3));
-        setHint(reactify.module(await ymaps3.import('@yandex/ymaps3-hint@0.0.1')));
+        setHint(reactify.module(await ymaps3.import("@yandex/ymaps3-hint@0.0.1")));
+        setControls(reactify.module(await ymaps3.import("@yandex/ymaps3-controls@0.0.1")));
       }}
     />
     {props.children}
