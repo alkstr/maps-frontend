@@ -26,7 +26,7 @@ export const Filters = (props: FiltersProps) => {
             <TextFilter label="ОПИ" name="opi" />
             <CheckBoxFilter label="Не распределён" name="is_not_license" />
             
-            <button className="bg-gray-200 rounded p-1 mt-2 hover:bg-gray-300 active:bg-gray-400" type="submit">Найти</button>
+            <button className="bg-gray-200 rounded p-1 hover:bg-gray-300 active:bg-gray-400" type="submit">Найти</button>
         </form>
     )
 }
