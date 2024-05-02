@@ -15,7 +15,7 @@ const INITIAL_ZOOM: number = 5;
 
 export const Map = () => {
   const mapRef = useRef<(YMap & { container: HTMLElement }) | null>(null);
-  const { ymaps, hint } = useMapsAPI();
+  const { ymaps, hint, controls } = useMapsAPI();
 
   const [location, setLocation] = useState<YMapCenterLocation & YMapZoomLocation>(
     { center: INITIAL_CENTER, zoom: INITIAL_ZOOM }
@@ -32,7 +32,7 @@ export const Map = () => {
         .then((a: Area[]) => setAreas(a))
     }, []);
 
-  if (!ymaps || !hint) return <Loader />
+  if (!ymaps || !hint || !controls) return <Loader />
 
   const {
     YMap,
@@ -45,6 +45,11 @@ export const Map = () => {
   const {
     YMapHint
   } = hint;
+
+  const {
+    YMapGeolocationControl,
+    YMapZoomControl,
+  } = controls;
 
   return (
     <YMap location={location} ref={mapRef}>
@@ -66,6 +71,8 @@ export const Map = () => {
           isHidden={() => isSidebarHidden}
           setIsHidden={setIsSidebarHidden} />
       </YMapControls>
+      <YMapControls position="top right"><YMapGeolocationControl /></YMapControls>
+      <YMapControls position="right"><YMapZoomControl /></YMapControls>
 
       {areas.map((a, i) =>
         <Marker
