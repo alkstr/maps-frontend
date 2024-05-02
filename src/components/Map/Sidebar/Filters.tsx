@@ -24,7 +24,7 @@ export const Filters = (props: FiltersProps) => {
             <section className="text-2xl font-semibold border-b-2">Поиск участков</section>
 
             <TextFilter label="ОПИ" name="opi" />
-            <CheckBoxFilter label="Без лицензии" name="is_not_license" />
+            <CheckBoxFilter label="Не распределён" name="is_not_license" />
             
             <button className="bg-gray-200 rounded p-1 mt-2 hover:bg-gray-300 active:bg-gray-400" type="submit">Найти</button>
         </form>
