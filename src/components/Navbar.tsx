@@ -1,7 +1,7 @@
 export const Navbar = () => {
     return (
         <header className="flex items-center h-16">
-            <NavButton name="Карта" href="/" />
+            <NavButton name="Карта месторождений" href="/" />
         </header>
     )
 }
