@@ -1,19 +1,19 @@
 import { useContext } from "react";
-import { useMapsAPI } from "../YMapsAPIProvider";
+import { HintModule } from "../YMapsAPIProvider";
 
-export const Hint = () => {
-    const { hint } = useMapsAPI();
+interface HintProps {
+    hint: HintModule;
+}
 
-    if (!hint) return <></>;
-
-    const { YMapHintContext } = hint;
-    const hintContext = useContext(YMapHintContext);
+export const Hint = (props: HintProps) => {
+    const { YMapHintContext } = props.hint;
+    const hintContext = useContext<any>(YMapHintContext);
 
     return (
-        hintContext &&
-        <div className="-translate-y-full bg-white p-1 border-black border-[1px]">
-            { /* @ts-ignore */}
-            {hintContext.hint}
-        </div>
+        hintContext ?
+            <div className="-translate-y-full bg-white p-1 border-black border-[1px]">
+                {hintContext.hint}
+            </div> :
+            <></>
     )
 }

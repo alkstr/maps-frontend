@@ -1,12 +1,10 @@
 import { fetchAreas } from "@/api";
 import { Area } from "@/domain";
 import { FormEvent } from "react";
+import { useMapState } from "../MapStateProvider";
 
-interface FiltersProps {
-    setAreas: Function;
-}
-
-export const Filters = (props: FiltersProps) => {
+export const Filters = () => {
+    const { setAreas } = useMapState();
     async function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
 
@@ -17,7 +15,7 @@ export const Filters = (props: FiltersProps) => {
         };
 
         fetchAreas(params)
-            .then((areas: Area[]) => props.setAreas(areas))
+            .then((areas: Area[]) => setAreas(areas))
             .catch(() => alert("Не удалось загрузить данные карты с сервера"));
     }
 
