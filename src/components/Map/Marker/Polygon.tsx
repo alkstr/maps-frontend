@@ -1,13 +1,14 @@
 import { Area } from "@/domain";
 import { useMapsAPI } from "../YMapsAPIProvider";
+import { SidebarState, useMapState } from "../MapStateProvider";
 
 interface PolygonProps {
     area: Area;
-    openPopup: Function;
 }
 
 export const Polygon = (props: PolygonProps) => {
     const { ymaps } = useMapsAPI();
+    const { setSelectedArea, setSidebarState, setIsSidebarVisible } = useMapState();
 
     if (!ymaps) return <></>;
 
@@ -21,7 +22,10 @@ export const Polygon = (props: PolygonProps) => {
             cursor: "pointer",
             zIndex: 1
         }}
-        onClick={() => props.openPopup()}
-        properties={{ hint: props.area.name }}
-    />
+        onClick={() => {
+            setSelectedArea(props.area);
+            setIsSidebarVisible(true);
+            setSidebarState(SidebarState.ObjectInfo)
+        }}
+        properties={{ hint: props.area.name }} />
 }

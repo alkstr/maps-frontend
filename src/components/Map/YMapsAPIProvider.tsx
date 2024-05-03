@@ -5,22 +5,22 @@ import ReactDOM from "react-dom";
 import Script from "next/script";
 import { ReactifiedModule } from "@yandex/ymaps3-types/reactify";
 
-export type YMaps = ReactifiedModule<
+export type YMapsModule = ReactifiedModule<
   typeof import("@yandex/ymaps3-types")
 >;
 
-export type Hint = ReactifiedModule<
+export type HintModule = ReactifiedModule<
   typeof import("@yandex/ymaps3-types/packages/hint")
 >;
 
-export type Controls = ReactifiedModule<
+export type ControlsModule = ReactifiedModule<
   typeof import("@yandex/ymaps3-types/packages/controls")
 >;
 
 type YMapsContextType = {
-  ymaps: YMaps | null;
-  hint: Hint | null;
-  controls: Controls | null;
+  ymaps: YMapsModule | null;
+  hint: HintModule | null;
+  controls: ControlsModule | null;
 };
 
 export const YMapsContext = createContext<YMapsContextType>({
@@ -32,9 +32,9 @@ export const YMapsContext = createContext<YMapsContextType>({
 export const YMapsAPIProvider: React.FC<{
   children?: React.ReactNode;
 }> = (props) => {
-  const [ymaps, setYMaps] = useState<YMaps | null>(null);
-  const [hint, setHint] = useState<Hint | null>(null);
-  const [controls, setControls] = useState<Controls | null>(null);
+  const [ymaps, setYMaps] = useState<YMapsModule | null>(null);
+  const [hint, setHint] = useState<HintModule | null>(null);
+  const [controls, setControls] = useState<ControlsModule | null>(null);
 
   const contextValue = useMemo(() => ({ ymaps, hint, controls }), [ymaps, hint, controls]);
 
