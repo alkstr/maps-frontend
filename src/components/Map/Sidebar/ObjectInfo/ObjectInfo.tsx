@@ -1,18 +1,20 @@
 import { Licenses } from "./Licenses";
 import { OPIList } from "./OPIList";
 import { SidebarState, useMapState } from "../../MapStateProvider";
+import { SidebarTab } from "../SidebarTab";
 
 export const ObjectInfo = () => {
     const { selectedArea } = useMapState();
     return (
-        <div className="flex flex-col h-full gap-2">
-            <CloseButton />
-            <div className="border-b-2 text-2xl font-semibold">{selectedArea?.name}</div>
-            <div className="flex flex-col gap-2 overflow-y-auto">
-                <OPIList opiList={selectedArea!.opiList} />
-                <Licenses owners={selectedArea!.owners} />
+        <SidebarTab state={SidebarState.ObjectInfo} header={selectedArea?.name ?? ""}>
+            <div className="flex flex-col h-full gap-2">
+                <CloseButton />
+                <div className="flex flex-col gap-2 overflow-y-auto">
+                    <OPIList opiList={selectedArea?.opiList ?? []} />
+                    <Licenses owners={selectedArea?.owners ?? []} />
+                </div>
             </div>
-        </div>
+        </SidebarTab>
     )
 }
 

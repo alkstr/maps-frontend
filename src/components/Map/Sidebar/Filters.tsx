@@ -1,7 +1,8 @@
 import { fetchAreas } from "@/api";
 import { Area } from "@/domain";
 import { FormEvent } from "react";
-import { useMapState } from "../MapStateProvider";
+import { SidebarState, useMapState } from "../MapStateProvider";
+import { SidebarTab } from "./SidebarTab";
 
 export const Filters = () => {
     const { setAreas } = useMapState();
@@ -20,14 +21,14 @@ export const Filters = () => {
     }
 
     return (
-        <form className="flex flex-col gap-4" onSubmit={onSubmit}>
-            <section className="text-2xl font-semibold border-b-2">Поиск участков</section>
+        <SidebarTab state={SidebarState.Filters} header="Поиск участков">
+            <form className="flex flex-col gap-4" onSubmit={onSubmit}>
+                <TextFilter label="ОПИ" name="opi" />
+                <CheckBoxFilter label="Не распределён" name="is_not_license" />
 
-            <TextFilter label="ОПИ" name="opi" />
-            <CheckBoxFilter label="Не распределён" name="is_not_license" />
-
-            <button className="bg-gray-200 rounded p-1 hover:bg-gray-300 active:bg-gray-400" type="submit">Найти</button>
-        </form>
+                <button className="bg-gray-200 rounded p-1 hover:bg-gray-300 active:bg-gray-400" type="submit">Найти</button>
+            </form>
+        </SidebarTab>
     )
 }
 
