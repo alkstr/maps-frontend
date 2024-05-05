@@ -11,7 +11,7 @@ export const OPIList = (props: OPIListProps) => {
             {
                 props.opiList.length == 0 ?
                     <div className="mt-2 mr-4 p-2 rounded border-2">На данном участке ничего не добывается</div> :
-                    props.opiList.map(o => <OPICard opi={o} />)
+                    props.opiList.map((o: OPI, i: number) => <OPICard key={i} opi={o} />)
             }
         </div>
     )
