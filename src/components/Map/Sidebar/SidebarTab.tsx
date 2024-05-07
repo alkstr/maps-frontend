@@ -3,7 +3,7 @@ import { SidebarState, useMapState } from "../MapStateProvider";
 
 interface SidebarTabProps {
     state: SidebarState;
-    header: String;
+    header: string;
     children: ReactNode;
 }
 

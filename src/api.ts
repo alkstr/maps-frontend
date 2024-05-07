@@ -12,10 +12,10 @@ export async function fetchAreas(params: { is_not_license: string, opi: string }
         const area = new Area();
 
         area.name = obj.name;
-        area.coordinates = obj.coordinates.map((c: { long: String, lat: String }) => [Number(c.long), Number(c.lat)]);
+        area.coordinates = obj.coordinates.map((c: { long: string, lat: string }) => [Number(c.long), Number(c.lat)]);
         area.owners = obj.owners.map((o: {
-            name: String;
-            address: String;
+            name: string;
+            address: string;
             registration: string;
             end_date: string;
         }) => {
@@ -49,7 +49,7 @@ export async function fetchAreas(params: { is_not_license: string, opi: string }
 //         const area = new Area();
 
 //         area.name = obj.name;
-//         area.coordinates = obj.coordinates.map((c: {long: String, lat: String}) => [c.long, c.lat]);
+//         area.coordinates = obj.coordinates.map((c: {long: string, lat: string}) => [c.long, c.lat]);
 //         area.owners = obj.owners;
 //         area.opiList = obj.opi;
 
