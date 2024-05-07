@@ -1,7 +1,7 @@
 "use client";
 
 import { YMapsAPIProvider } from "@/components/Map/YMapsAPIProvider";
-import { Map } from "@/components/Map/Map"
+import { Map } from "@/components/Map/Map";
 import { MapStateProvider } from "@/components/Map/MapStateProvider";
 
 export default function Home() {

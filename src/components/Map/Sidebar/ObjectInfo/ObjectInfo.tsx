@@ -15,7 +15,7 @@ export const ObjectInfo = () => {
                 </div>
             </div>
         </SidebarTab>
-    )
+    );
 }
 
 const CloseButton = () => {
@@ -27,5 +27,5 @@ const CloseButton = () => {
             onClick={() => setSidebarState(SidebarState.Filters)}>
             ❌
         </button>
-    )
+    );
 }

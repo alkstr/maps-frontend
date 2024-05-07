@@ -14,5 +14,5 @@ export const SidebarTab = (props: SidebarTabProps) => {
             <div className="border-b-2 text-2xl font-semibold">{props.header}</div>
             {props.children}
         </div>
-    )
+    );
 }

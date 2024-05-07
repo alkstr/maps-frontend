@@ -7,7 +7,7 @@ import { SidebarTab } from "./SidebarTab";
 export const Filters = () => {
     const { setAreas } = useMapState();
     async function onSubmit(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault()
+        event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
         const params = {
@@ -29,7 +29,7 @@ export const Filters = () => {
                 <button className="bg-gray-200 rounded p-1 hover:bg-gray-300 active:bg-gray-400" type="submit">Найти</button>
             </form>
         </SidebarTab>
-    )
+    );
 }
 
 interface FilterProps {
@@ -43,7 +43,7 @@ const CheckBoxFilter = (props: FilterProps) => {
             <div className="float-left">{props.label}</div>
             <input className="size-5" name={props.name} type="checkbox" id={props.name + "_input"} />
         </label>
-    )
+    );
 }
 
 const TextFilter = (props: FilterProps) => {
@@ -52,5 +52,5 @@ const TextFilter = (props: FilterProps) => {
             <div className="float-left">{props.label}</div>
             <input className="w-full px-1 border-[1px] border-gray-500 rounded" name={props.name} type="text" id={props.name + "_input"} />
         </label>
-    )
+    );
 }

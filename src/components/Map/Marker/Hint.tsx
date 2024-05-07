@@ -15,5 +15,5 @@ export const Hint = (props: HintProps) => {
                 {hintContext.hint}
             </div> :
             <></>
-    )
+    );
 }

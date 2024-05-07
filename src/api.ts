@@ -4,9 +4,9 @@ export async function fetchAreas(params: { is_not_license: string, opi: string }
     const queryParams = new URLSearchParams(params).toString();
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/area/?${queryParams}`, {
         method: 'GET',
-    })
+    });
 
-    const data = await response.json()
+    const data = await response.json();
 
     return data.map((obj: any) => {
         const area = new Area();
@@ -17,7 +17,7 @@ export async function fetchAreas(params: { is_not_license: string, opi: string }
             name: String;
             address: String;
             registration: string;
-            end_date: string
+            end_date: string;
         }) => {
             const owner = new Owner();
             owner.name = o.name;
@@ -59,4 +59,4 @@ export async function fetchAreas(params: { is_not_license: string, opi: string }
 
 const MOCK_DATA = [
 
-]
+];

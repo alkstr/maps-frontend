@@ -6,7 +6,7 @@ import { useMapsAPI } from "./YMapsAPIProvider";
 import { Loader } from "../Loader";
 import { Area } from "@/domain";
 import { Marker } from "./Marker/Marker";
-import { Hint } from "./Marker/Hint"
+import { Hint } from "./Marker/Hint";
 import { Sidebar } from "./Sidebar/Sidebar";
 import { fetchAreas } from "@/api";
 import { useMapState } from "./MapStateProvider";
@@ -26,14 +26,16 @@ export const Map = () => {
       }
     }, [ymaps, hint, controls, setAreas]);
 
-  if (!ymaps || !hint || !controls) return <Loader />
+  if (!ymaps || !hint || !controls) {
+    return <Loader />;
+  }
 
   const {
     YMap,
     YMapDefaultSchemeLayer,
     YMapDefaultFeaturesLayer,
     YMapListener,
-    YMapControls
+    YMapControls,
   } = ymaps;
 
   const {

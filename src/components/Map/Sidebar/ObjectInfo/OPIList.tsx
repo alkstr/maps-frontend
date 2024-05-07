@@ -14,7 +14,7 @@ export const OPIList = (props: OPIListProps) => {
                     props.opiList.map((o: OPI, i: number) => <OPICard key={i} opi={o} />)
             }
         </div>
-    )
+    );
 }
 
 interface OPICardProps {
@@ -29,5 +29,5 @@ const OPICard = (props: OPICardProps) => {
             <h3 className="text-lg border-b-2">Код</h3>
             {props.opi.code.toString()}
         </div>
-    )
+    );
 }

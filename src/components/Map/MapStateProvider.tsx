@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState } from "react";
 import { YMapCenterLocation, YMapZoomLocation } from "@yandex/ymaps3-types";
 import { Area } from "@/domain";
 
-export const INITIAL_LOCATION: YMapCenterLocation & YMapZoomLocation = { center: [50.229762, 55.289311], zoom: 5 }
+export const INITIAL_LOCATION: YMapCenterLocation & YMapZoomLocation = { center: [50.229762, 55.289311], zoom: 5 };
 
 export enum SidebarState {
     Filters,
@@ -46,15 +46,17 @@ export const MapStateProvider: React.FC<{
     const [sidebarState, setSidebarState] = useState<SidebarState>(SidebarState.Filters);
     const [isSidebarVisible, setIsSidebarVisible] = useState<Boolean>(true);
 
-    return <MapStateContext.Provider value={{
-        location, setLocation,
-        areas, setAreas,
-        selectedArea, setSelectedArea,
-        sidebarState, setSidebarState,
-        isSidebarVisible, setIsSidebarVisible,
-    }}>
-        {props.children}
-    </MapStateContext.Provider>
+    return (
+        <MapStateContext.Provider value={{
+            location, setLocation,
+            areas, setAreas,
+            selectedArea, setSelectedArea,
+            sidebarState, setSidebarState,
+            isSidebarVisible, setIsSidebarVisible,
+        }}>
+            {props.children}
+        </MapStateContext.Provider>
+    );
 };
 
 export const useMapState = () => useContext(MapStateContext);
