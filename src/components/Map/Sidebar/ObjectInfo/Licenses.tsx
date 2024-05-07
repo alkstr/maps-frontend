@@ -10,11 +10,11 @@ export const Licenses = (props: LicensesProps) => {
             <h2 className="text-xl font-medium">Лицензии</h2>
             {
                 props.owners.length == 0 ?
-                <div className="mt-2 mr-4 p-2 rounded border-2">Лицензии отсутствуют</div> :
-                    props.owners.map(o => <LicenseCard owner={o} />)
+                    <div className="mt-2 mr-4 p-2 rounded border-2">Лицензии отсутствуют</div> :
+                    props.owners.map((o, i) => <LicenseCard key={i} owner={o} />)
             }
         </div>
-    )
+    );
 }
 
 interface LicenseCardProps {
@@ -33,5 +33,5 @@ const LicenseCard = (props: LicenseCardProps) => {
             <h3 className="text-lg border-b-2">Конец действия лицензии</h3>
             {props.owner.registrationEndDate.toLocaleDateString()}
         </div>
-    )
+    );
 }
