@@ -5,6 +5,7 @@ export class Area {
     coordinates!: LngLat[];
     owners!: Owner[];
     opiList!: OPI[];
+    reserves!: Reserves;
 }
 
 export class Owner {
@@ -22,6 +23,6 @@ export class OPI {
 export class Reserves {
     A!: number;
     B!: number;
-    C!: number;
     C1!: number;
+    C2!: number;
 }
