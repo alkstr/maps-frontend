@@ -22,7 +22,7 @@ const CloseButton = () => {
     const { setSidebarState } = useMapState();
     return (
         <button
-            className="absolute right-1 top-1 border-2 border-gray-300 rounded drop-shadow-sm select-none 
+            className="absolute right-4 top-4 border-2 border-gray-300 rounded drop-shadow-sm select-none 
             hover:bg-gray-200 active:bg-gray-300"
             onClick={() => setSidebarState(SidebarState.Filters)}>
             ❌
