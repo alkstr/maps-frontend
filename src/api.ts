@@ -28,6 +28,12 @@ export async function fetchAreas(params: { is_not_license: string, opi: string }
         })
         area.opiList = obj.opi;
 
+        area.reserves = new Reserves();
+        area.reserves.A = obj.category_a;
+        area.reserves.B = obj.category_b;
+        area.reserves.C1 = obj.category_c1;
+        area.reserves.C2 = obj.category_c2;
+
         return area;
     })
 }
