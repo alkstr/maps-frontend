@@ -27,7 +27,7 @@ const OPICard = (props: OPICardProps) => {
             <h3 className="text-lg border-b-2">Название</h3>
             {props.opi.name}
             <h3 className="text-lg border-b-2">Код</h3>
-            {props.opi.code.toString()}
+            {props.opi.code}
         </div>
     );
 }
