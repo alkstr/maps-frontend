@@ -1,24 +1,32 @@
-import { Area, Owner } from "./domain";
+import { Area, OPI, Owner, Reserves } from "./domain";
+
+type fetchAreasResponse = {
+    name: string;
+    coordinates: { long: string, lat: string }[];
+    owners: { name: string, address: string, registration: string, end_date: string, }[];
+    opi: OPI[];
+    category_a: number;
+    category_b: number;
+    category_c1: number;
+    category_c2: number;
+};
 
 export async function fetchAreas(params: { is_not_license: string, opi: string }): Promise<Area[]> {
-    const queryParams = new URLSearchParams(params).toString();
+    const queryParams = new URLSearchParams(params);
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/area/?${queryParams}`, {
-        method: 'GET',
+        method: "GET",
     });
 
     const data = await response.json();
 
-    return data.map((obj: any) => {
+    return data.map((obj: fetchAreasResponse) => {
         const area = new Area();
 
         area.name = obj.name;
+
         area.coordinates = obj.coordinates.map((c: { long: string, lat: string }) => [Number(c.long), Number(c.lat)]);
-        area.owners = obj.owners.map((o: {
-            name: string;
-            address: string;
-            registration: string;
-            end_date: string;
-        }) => {
+
+        area.owners = obj.owners.map((o: { name: string, address: string, registration: string, end_date: string, }) => {
             const owner = new Owner();
             owner.name = o.name;
             owner.address = o.address;
@@ -26,6 +34,7 @@ export async function fetchAreas(params: { is_not_license: string, opi: string }
             owner.registrationEndDate = new Date(o.end_date);
             return owner;
         })
+
         area.opiList = obj.opi;
 
         area.reserves = new Reserves();
