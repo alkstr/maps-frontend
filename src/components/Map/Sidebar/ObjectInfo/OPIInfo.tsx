@@ -1,10 +1,10 @@
 import { OPI } from "@/domain";
 
-export interface OPIListProps {
+export interface OPIInfoProps {
     opiList: OPI[];
 }
 
-export const OPIList = (props: OPIListProps) => {
+export const OPIInfo = (props: OPIInfoProps) => {
     return (
         <div>
             <h2 className="text-xl font-medium">ОПИ</h2>

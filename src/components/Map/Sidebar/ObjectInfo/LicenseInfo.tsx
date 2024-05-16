@@ -1,10 +1,10 @@
 import { Owner } from "@/domain";
 
-export interface LicensesProps {
+export interface LicenseInfoProps {
     owners: Owner[];
 }
 
-export const Licenses = (props: LicensesProps) => {
+export const LicenseInfo = (props: LicenseInfoProps) => {
     return (
         <div>
             <h2 className="text-xl font-medium">Лицензии</h2>

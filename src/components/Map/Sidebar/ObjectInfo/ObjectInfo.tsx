@@ -1,5 +1,5 @@
-import { Licenses } from "./Licenses";
-import { OPIList } from "./OPIList";
+import { LicenseInfo } from "./LicenseInfo";
+import { OPIInfo } from "./OPIInfo";
 import { SidebarState, useMapState } from "../../MapStateProvider";
 import { SidebarTab } from "../SidebarTab";
 
@@ -10,8 +10,8 @@ export const ObjectInfo = () => {
             <div className="flex flex-col h-full gap-2">
                 <CloseButton />
                 <div className="flex flex-col gap-2 overflow-y-auto">
-                    <OPIList opiList={selectedArea?.opiList ?? []} />
-                    <Licenses owners={selectedArea?.owners ?? []} />
+                    <OPIInfo opiList={selectedArea?.opiList ?? []} />
+                    <LicenseInfo owners={selectedArea?.owners ?? []} />
                 </div>
             </div>
         </SidebarTab>
