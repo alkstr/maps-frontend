@@ -24,11 +24,11 @@ export const Filters = () => {
 
     return (
         <SidebarTab state={SidebarState.Filters} header="Поиск участков">
-            <form className="flex flex-col gap-4" onSubmit={onSubmit}>
-                <TextFilter label="ОПИ" name="opi" />
-                <CheckBoxFilter label="Не распределён" name="is_not_license" />
+            <form className="flex flex-col gap-3" onSubmit={onSubmit}>
+                <TextFilter label="Вид полезного ископаемого" name="opi" />
+                <CheckBoxFilter label="Скрыть распределённые участки" name="is_not_license" />
                 <TextFilter label="Название месторождения" name="deposit_name" />
-                <TextFilter label="Название ОКАТО" name="okato_name" />
+                <TextFilter label="Наименование ОКАТО" name="okato_name" />
 
                 <button className="bg-gray-200 rounded p-1 hover:bg-gray-300 active:bg-gray-400" type="submit">Найти</button>
             </form>
@@ -43,7 +43,7 @@ interface FilterProps {
 
 const CheckBoxFilter = (props: FilterProps) => {
     return (
-        <label htmlFor={props.name + "_input"} className="flex flex-row gap-3 items-center">
+        <label htmlFor={props.name + "_input"} className="flex flex-row gap-4 items-center">
             <div className="float-left">{props.label}</div>
             <input className="size-5" name={props.name} type="checkbox" id={props.name + "_input"} />
         </label>
@@ -52,9 +52,9 @@ const CheckBoxFilter = (props: FilterProps) => {
 
 const TextFilter = (props: FilterProps) => {
     return (
-        <label htmlFor={props.name + "_input"} className="flex flex-col gap-1">
+        <label htmlFor={props.name + "_input"}>
             <div className="float-left">{props.label}</div>
-            <input className="w-full px-1 border-[1px] border-gray-500 rounded" name={props.name} type="text" id={props.name + "_input"} />
+            <input className="w-full h-8 px-1 border-[1px] border-gray-500 rounded" name={props.name} type="text" id={props.name + "_input"} />
         </label>
     );
 }
