@@ -2,6 +2,8 @@ import { LicenseInfo } from "./LicenseInfo";
 import { OPIInfo } from "./OPIInfo";
 import { SidebarState, useMapState } from "../../MapStateProvider";
 import { SidebarTab } from "../SidebarTab";
+import { DepositInfo } from "./DepositInfo";
+import { Deposit } from "@/domain";
 
 export const ObjectInfo = () => {
     const { selectedArea } = useMapState();
@@ -11,6 +13,7 @@ export const ObjectInfo = () => {
                 <CloseButton />
                 <div className="flex flex-col gap-2 overflow-y-auto">
                     <OPIInfo opiList={selectedArea?.opiList ?? []} />
+                    <DepositInfo deposit={selectedArea?.deposit ?? new Deposit()} />
                     <LicenseInfo owners={selectedArea?.owners ?? []} />
                 </div>
             </div>

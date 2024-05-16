@@ -1,8 +1,9 @@
-import { Area, OPI, Owner, Reserves } from "./domain";
+import { Area, Deposit, OPI, Owner, Reserves } from "./domain";
 
 type fetchAreasResponse = {
     name: string;
     coordinates: { long: string, lat: string }[];
+    deposit: { name: string, okato: string };
     owners: { name: string, address: string, registration: string, end_date: string, }[];
     opi: OPI[];
     category_a: number;
@@ -28,6 +29,8 @@ export async function fetchAreas(
         area.name = obj.name;
 
         area.coordinates = obj.coordinates.map((c: { long: string, lat: string }) => [Number(c.long), Number(c.lat)]);
+
+        area.deposit = { name: obj.deposit.name, okato_code: obj.deposit.okato };
 
         area.owners = obj.owners.map((o: { name: string, address: string, registration: string, end_date: string, }) => {
             const owner = new Owner();
