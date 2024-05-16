@@ -14,17 +14,22 @@ import { useMapState } from "./MapStateProvider";
 export const Map = () => {
   const mapRef = useRef<(YMap & { container: HTMLElement }) | null>(null);
   const { ymaps, hint, controls } = useMapsAPI();
-  const { location, setLocation, areas, setAreas } = useMapState();
+  const { location, setLocation, areas, setAreas, setOPINames } = useMapState();
   const getHint = useCallback((object: any) => object?.properties?.hint, []);
 
   useEffect(
     () => {
       if (ymaps && hint && controls && setAreas) {
         fetchAreas()
-          .then((a: Area[]) => setAreas(a))
+          .then((ars: Area[]) => {
+            setAreas(ars);
+            const names = new Set<string>();
+            ars.forEach(a => a.opiList.forEach(o => names.add(o.name)));
+            setOPINames(Array.from(names));
+          })
           .catch(() => alert("Не удалось загрузить данные карты с сервера"));
       }
-    }, [ymaps, hint, controls, setAreas]);
+    }, [ymaps, hint, controls, setAreas, setOPINames]);
 
   if (!ymaps || !hint || !controls) {
     return <Loader />;

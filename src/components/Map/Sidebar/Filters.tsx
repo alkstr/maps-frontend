@@ -5,7 +5,8 @@ import { SidebarState, useMapState } from "../MapStateProvider";
 import { SidebarTab } from "./SidebarTab";
 
 export const Filters = () => {
-    const { setAreas } = useMapState();
+    const { setAreas, opiNames } = useMapState();
+
     async function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
@@ -25,7 +26,8 @@ export const Filters = () => {
     return (
         <SidebarTab state={SidebarState.Filters} header="Поиск участков">
             <form className="flex flex-col gap-3" onSubmit={onSubmit}>
-                <TextFilter label="Вид полезного ископаемого" name="opi" />
+                {/* <TextFilter label="Название участка" name="name"/> */}
+                <TextSelectFilter label="Полезное ископаемое" name="opi" choices={opiNames} />
                 <CheckBoxFilter label="Скрыть распределённые участки" name="is_not_license" />
                 <TextFilter label="Название месторождения" name="deposit_name" />
                 <TextFilter label="Наименование ОКАТО" name="okato_name" />
@@ -55,6 +57,23 @@ const TextFilter = (props: FilterProps) => {
         <label htmlFor={props.name + "_input"}>
             <div className="float-left">{props.label}</div>
             <input className="w-full h-8 px-1 border-[1px] border-gray-500 rounded" name={props.name} type="text" id={props.name + "_input"} />
+        </label>
+    );
+}
+
+const TextSelectFilter = (props: { label: string, name: string, choices: string[], }) => {
+    return (
+        <label htmlFor={props.name + "_input"}>
+            <div className="float-left">{props.label}</div>
+            <input className="w-full h-8 px-1 border-[1px] border-gray-500 rounded"
+                name={props.name}
+                type="text"
+                id={props.name + "_input"}
+                list={props.name + "_list"} />
+
+            <datalist id={props.name + "_list"} >
+                {props.choices.map(n => <option key={n} value={n} />)}
+            </datalist>
         </label>
     );
 }
