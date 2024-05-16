@@ -5,7 +5,7 @@ import { SidebarState, useMapState } from "../MapStateProvider";
 import { SidebarTab } from "./SidebarTab";
 
 export const Filters = () => {
-    const { setAreas, opiNames } = useMapState();
+    const { areas, setAreas, opiNames } = useMapState();
 
     async function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -34,6 +34,9 @@ export const Filters = () => {
 
                 <button className="bg-gray-200 rounded p-1 hover:bg-gray-300 active:bg-gray-400" type="submit">Найти</button>
             </form>
+            <div className="border-2 p-2 rounded  border-gray-200">
+                Количество найденных участков: {areas.length}
+            </div>
         </SidebarTab>
     );
 }
