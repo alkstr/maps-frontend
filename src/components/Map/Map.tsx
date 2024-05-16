@@ -15,7 +15,7 @@ export const Map = () => {
   const mapRef = useRef<(YMap & { container: HTMLElement }) | null>(null);
   const { ymaps, hint, controls } = useMapsAPI();
   const { location, setLocation, areas, setAreas } = useMapState();
-  const getHint = useCallback((object: any) => object?.properties.hint, []);
+  const getHint = useCallback((object: any) => object?.properties?.hint, []);
 
   useEffect(
     () => {
