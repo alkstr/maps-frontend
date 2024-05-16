@@ -20,7 +20,7 @@ export const Map = () => {
   useEffect(
     () => {
       if (ymaps && hint && controls && setAreas) {
-        fetchAreas({ is_not_license: "", opi: "" })
+        fetchAreas()
           .then((a: Area[]) => setAreas(a))
           .catch(() => alert("Не удалось загрузить данные карты с сервера"));
       }

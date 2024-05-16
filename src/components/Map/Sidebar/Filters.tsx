@@ -12,7 +12,9 @@ export const Filters = () => {
         const formData = new FormData(event.currentTarget);
         const params = {
             is_not_license: formData.get("is_not_license") ? "True" : "",
-            opi: formData.get("opi")!.toString() ?? "",
+            opi: formData.get("opi")?.toString() ?? "",
+            deposit_name: formData.get("deposit_name")?.toString() ?? "",
+            okato_name: formData.get("okato_name")?.toString() ?? "",
         };
 
         fetchAreas(params)
@@ -25,6 +27,8 @@ export const Filters = () => {
             <form className="flex flex-col gap-4" onSubmit={onSubmit}>
                 <TextFilter label="ОПИ" name="opi" />
                 <CheckBoxFilter label="Не распределён" name="is_not_license" />
+                <TextFilter label="Название месторождения" name="deposit_name" />
+                <TextFilter label="Название ОКАТО" name="okato_name" />
 
                 <button className="bg-gray-200 rounded p-1 hover:bg-gray-300 active:bg-gray-400" type="submit">Найти</button>
             </form>

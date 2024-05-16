@@ -11,7 +11,10 @@ type fetchAreasResponse = {
     category_c2: number;
 };
 
-export async function fetchAreas(params: { is_not_license: string, opi: string }): Promise<Area[]> {
+export async function fetchAreas(
+    params: { is_not_license: string, opi: string, deposit_name: string, okato_name: string, } =
+        { is_not_license: "", opi: "", deposit_name: "", okato_name: "", }):
+    Promise<Area[]> {
     const queryParams = new URLSearchParams(params);
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/area/?${queryParams}`, {
         method: "GET",
