@@ -1,0 +1,18 @@
+services:
+  next-app:
+    container_name: next-app
+    build:
+      context: .
+      dockerfile: prod.Dockerfile
+      args:
+        NEXT_PUBLIC_BACKEND_URL: ${NEXT_PUBLIC_BACKEND_URL}
+        NEXT_PUBLIC_YANDEX_MAPS_API_KEY: ${NEXT_PUBLIC_YANDEX_MAPS_API_KEY}
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - prod_network
+
+networks:
+  prod_network:
+    external: true
