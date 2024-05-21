@@ -25,11 +25,9 @@ const LicenseCard = (props: { owner: Owner, number: number }) => {
             {props.owner.name}
             <h3 className="text-lg border-b-2">Адрес</h3>
             {props.owner.address}
-            <h3 className="text-lg border-b-2">Имя</h3>
-            {props.owner.name}
-            <h3 className="text-lg border-b-2">Начало действия лицензии</h3>
+            <h3 className="text-lg border-b-2">Начало действия</h3>
             {props.owner.registrationDate.toLocaleDateString()}
-            <h3 className="text-lg border-b-2">Конец действия лицензии</h3>
+            <h3 className="text-lg border-b-2">Конец действия</h3>
             {props.owner.registrationEndDate.toLocaleDateString()}
         </div>
     );
