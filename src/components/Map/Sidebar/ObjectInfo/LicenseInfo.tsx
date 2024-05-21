@@ -11,19 +11,18 @@ export const LicenseInfo = (props: LicenseInfoProps) => {
             {
                 props.owners.length == 0 ?
                     <div className="mt-2 mr-4 p-2 rounded border-2">Лицензии отсутствуют</div> :
-                    props.owners.map((o, i) => <LicenseCard key={i} owner={o} />)
+                    props.owners.map((o: Owner, i: number) => <LicenseCard key={i} number={i} owner={o} />)
             }
         </div>
     );
 }
 
-interface LicenseCardProps {
-    owner: Owner;
-}
-
-const LicenseCard = (props: LicenseCardProps) => {
+const LicenseCard = (props: { owner: Owner, number: number }) => {
     return (
         <div className="mt-2 mr-4 p-2 rounded border-2">
+            <div className="absolute right-10 text-gray-500">{`#${props.number + 1}`}</div>
+            <h3 className="text-lg border-b-2">Недропользователь</h3>
+            {props.owner.name}
             <h3 className="text-lg border-b-2">Адрес</h3>
             {props.owner.address}
             <h3 className="text-lg border-b-2">Имя</h3>
