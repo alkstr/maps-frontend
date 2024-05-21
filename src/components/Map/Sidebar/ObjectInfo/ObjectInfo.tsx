@@ -9,9 +9,9 @@ export const ObjectInfo = () => {
     const { selectedArea } = useMapState();
     return (
         <SidebarTab state={SidebarState.ObjectInfo} header={selectedArea?.name ?? ""}>
-            <div className="flex flex-col h-full gap-2">
+            <div className="flex flex-col h-full gap-2 mb-4">
                 <CloseButton />
-                <div className="flex flex-col gap-2 overflow-y-auto">
+                <div className="flex flex-col gap-2">
                     <OPIInfo opiList={selectedArea?.opiList ?? []} />
                     <DepositInfo deposit={selectedArea?.deposit ?? new Deposit()} />
                     <LicenseInfo owners={selectedArea?.owners ?? []} />
