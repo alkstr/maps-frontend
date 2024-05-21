@@ -3,7 +3,8 @@ import { OPIInfo } from "./OPIInfo";
 import { SidebarState, useMapState } from "../../MapStateProvider";
 import { SidebarTab } from "../SidebarTab";
 import { DepositInfo } from "./DepositInfo";
-import { Deposit } from "@/domain";
+import { Deposit, Reserves } from "@/domain";
+import { ReservesInfo } from "./ReservesInfo";
 
 export const ObjectInfo = () => {
     const { selectedArea } = useMapState();
@@ -15,6 +16,7 @@ export const ObjectInfo = () => {
                     <OPIInfo opiList={selectedArea?.opiList ?? []} />
                     <DepositInfo deposit={selectedArea?.deposit ?? new Deposit()} />
                     <LicenseInfo owners={selectedArea?.owners ?? []} />
+                    <ReservesInfo reserves={selectedArea?.reserves ?? new Reserves()}/>
                 </div>
             </div>
         </SidebarTab>
