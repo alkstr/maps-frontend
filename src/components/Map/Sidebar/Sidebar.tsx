@@ -10,19 +10,12 @@ export const Sidebar = () => {
             <Filters />
             <ObjectInfo />
             {
-                isSidebarVisible ?
-                    <button
-                        className="absolute ml-96 mt-2 text-5xl"
-                        style={{ zIndex: 2 }}
-                        onClick={() => setIsSidebarVisible(false)}>
-                        ⬅️
-                    </button> :
-                    <button
-                        className="absolute mt-2 text-5xl"
-                        style={{ zIndex: 2 }}
-                        onClick={() => setIsSidebarVisible(true)}>
-                        ➡️
-                    </button>
+                <button
+                    className={"absolute mt-2 text-5xl transition duration-500 ease-in-out " + (isSidebarVisible ? "translate-x-[585%] rotate-180" : "")}
+                    style={{ zIndex: 2 }}
+                    onClick={() => setIsSidebarVisible(!isSidebarVisible)}>
+                    ➡️
+                </button>
             }
         </div>
     );
