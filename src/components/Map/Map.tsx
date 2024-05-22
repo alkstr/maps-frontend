@@ -53,7 +53,7 @@ export const Map = () => {
   } = controls;
 
   return (
-    <YMap location={location} ref={mapRef} showScaleInCopyrights={true}>
+    <YMap location={location} ref={mapRef} showScaleInCopyrights={true} theme="light">
       <YMapDefaultSchemeLayer />
       <YMapDefaultFeaturesLayer />
       <YMapListener onUpdate={() => setLocation({
