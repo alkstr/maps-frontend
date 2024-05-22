@@ -16,7 +16,7 @@ export const ObjectInfo = () => {
                     <OPIInfo opiList={selectedArea?.opiList ?? []} />
                     <DepositInfo deposit={selectedArea?.deposit ?? new Deposit()} />
                     <LicenseInfo owners={selectedArea?.owners ?? []} />
-                    <ReservesInfo reserves={selectedArea?.reserves ?? new Reserves()}/>
+                    <ReservesInfo reserves={selectedArea?.reserves ?? new Reserves()} />
                 </div>
             </div>
         </SidebarTab>
