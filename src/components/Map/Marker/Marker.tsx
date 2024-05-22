@@ -46,8 +46,8 @@ export const MarkerImage = (props: MarkerImageProps) => {
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            fill="#ffff95"
-            className="size-8 -translate-x-1/2 -translate-y-full stroke-black stroke-[2px] cursor-pointer hover:size-10 active:size-9"
+            fill="#363636"
+            className="size-10 -translate-x-1/2 -translate-y-full  cursor-pointer hover:size-12 active:size-10"
             onClick={() => {
                 setSelectedArea(props.area);
                 setIsSidebarVisible(true);

@@ -11,7 +11,7 @@ export const Hint = (props: HintProps) => {
 
     return (
         hintContext ?
-            <div className="-translate-y-full bg-white p-1 border-black border-[1px]">
+            <div className="-translate-y-full bg-black rounded bg-opacity-70 p-2 text-white">
                 {hintContext.hint}
             </div> :
             <></>
