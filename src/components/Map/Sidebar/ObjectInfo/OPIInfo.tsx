@@ -18,9 +18,9 @@ const MineralCard = (props: { mineral: Mineral, number: number }) => {
         <div className="mt-2 mr-4 p-2 rounded border-2">
             <div className="absolute right-10 text-gray-500">{`#${props.number + 1}`}</div>
             <h3 className="text-lg border-b-2">Вид</h3>
-            <div className="text-justify">{props.mineral.name}</div>
+            {props.mineral.name}
             <h3 className="text-lg border-b-2">Код</h3>
-            <div className="text-justify">{props.mineral.code}</div>
+            {props.mineral.code}
         </div>
     );
 }
