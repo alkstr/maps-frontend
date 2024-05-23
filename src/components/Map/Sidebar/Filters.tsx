@@ -30,7 +30,7 @@ export const Filters = () => {
                 <TextSelectFilter label="Полезное ископаемое" name="opi" choices={opiNames} />
                 <CheckBoxFilter label="Скрыть распределённые участки" name="is_not_license" />
                 <TextFilter label="Название месторождения" name="deposit_name" />
-                <TextFilter label="Наименование ОКАТО" name="okato_name" />
+                <TextFilter label="Код ОКАТО" name="okato_name" />
 
                 <button className="bg-gray-200 rounded p-1 hover:bg-gray-300 active:bg-gray-400" type="submit">Найти</button>
             </form>

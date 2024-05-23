@@ -11,7 +11,7 @@ export const Sidebar = () => {
             <ObjectInfo />
             {
                 <button
-                    className={"absolute flex justify-center items-center size-10 bg-white rounded-lg ml-2 mt-2 drop-shadow-lg transition duration-500 ease-in-out rotate-180 " + (isSidebarVisible ? "translate-x-[950%]" : "")}
+                    className={"absolute flex justify-center items-center size-10 bg-white rounded-lg ml-2 mt-2 drop-shadow transition duration-500 ease-in-out rotate-180 " + (isSidebarVisible ? "translate-x-[950%]" : "")}
                     style={{ zIndex: 2 }}
                     onClick={() => setIsSidebarVisible(!isSidebarVisible)}>
                     {isSidebarVisible ?
