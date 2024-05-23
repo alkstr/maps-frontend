@@ -6,13 +6,13 @@ export const ReservesInfo = (props: { reserves: Reserves }) => {
             <h2 className="text-xl font-medium">Запасы</h2>
             <div className="mt-2 mr-4 p-2 rounded border-2">
                 <h3 className="text-lg border-b-2">Категория A</h3>
-                {props.reserves.A} т.
+                {props.reserves.a} т.
                 <h3 className="text-lg border-b-2">Категория B</h3>
-                {props.reserves.B} т.
+                {props.reserves.b} т.
                 <h3 className="text-lg border-b-2">Категория C1</h3>
-                {props.reserves.C1} т.
+                {props.reserves.c1} т.
                 <h3 className="text-lg border-b-2">Категория C2</h3>
-                {props.reserves.C2} т.
+                {props.reserves.c2} т.
             </div>
         </div>
     );
