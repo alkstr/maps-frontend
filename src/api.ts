@@ -1,20 +1,42 @@
-import { Area, Deposit, OPI, Owner, Reserves } from "./domain";
+import { Area, Deposit, License, Mineral, Reserves } from "./domain";
 
-type fetchAreasResponse = {
+type areasGetSchema = {
     name: string;
     coordinates: { long: string, lat: string }[];
     deposit: { name: string, okato: string };
     owners: { name: string, address: string, registration: string, end_date: string, }[];
-    opi: OPI[];
+    opi: { code: number, name: string }[];
     category_a: number;
     category_b: number;
     category_c1: number;
     category_c2: number;
+    year_estimation: string;
 };
 
-export async function fetchAreas(
-    params: { is_not_license: string, opi: string, deposit_name: string, okato_name: string, } =
-        { is_not_license: "", opi: "", deposit_name: "", okato_name: "", }):
+export type areasGetParams = {
+    is_not_license: string;
+    opi: string;
+    deposit_name: string;
+    okato_name: string;
+}
+
+function parse(obj: areasGetSchema): Area {
+    const licenses = obj.owners.map((o: { name: string, address: string, registration: string, end_date: string, }) =>
+        new License(o.name, o.address, new Date(o.registration), new Date(o.end_date))
+    );
+
+    return new Area(
+        obj.name,
+        obj.coordinates.map((c: { long: string, lat: string }) => [Number(c.long), Number(c.lat)]),
+        new Deposit(obj.deposit.name, obj.deposit.okato),
+        licenses,
+        obj.opi.map((m: { code: number, name: string }) => new Mineral(m.code.toString(), m.name)),
+        new Reserves(obj.category_a, obj.category_b, obj.category_c1, obj.category_c2)
+    )
+}
+
+export async function fetchAreas(params: areasGetParams =
+    { is_not_license: "", opi: "", deposit_name: "", okato_name: "" }):
     Promise<Area[]> {
     const queryParams = new URLSearchParams(params);
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/area/?${queryParams}`, {
@@ -22,62 +44,32 @@ export async function fetchAreas(
     });
 
     const data = await response.json();
-
-    return data.map((obj: fetchAreasResponse) => {
-        const area = new Area();
-
-        area.name = obj.name;
-
-        area.coordinates = obj.coordinates.map((c: { long: string, lat: string }) => [Number(c.long), Number(c.lat)]);
-
-        area.deposit = { name: obj.deposit.name, okato_code: obj.deposit.okato };
-
-        area.owners = obj.owners.map((o: { name: string, address: string, registration: string, end_date: string, }) => {
-            const owner = new Owner();
-            owner.name = o.name;
-            owner.address = o.address;
-            owner.registrationDate = new Date(o.registration);
-            owner.registrationEndDate = new Date(o.end_date);
-            return owner;
-        })
-
-        area.opiList = obj.opi;
-
-        area.reserves = new Reserves();
-        area.reserves.A = obj.category_a;
-        area.reserves.B = obj.category_b;
-        area.reserves.C1 = obj.category_c1;
-        area.reserves.C2 = obj.category_c2;
-
-        return area;
-    })
+    return data.map((obj: areasGetSchema) => parse(obj));
 }
 
+export async function fetchAreasMock(params: areasGetParams =
+    { is_not_license: "", opi: "", deposit_name: "", okato_name: "" }):
+    Promise<Area[]> {
+    const data = MOCK_DATA.filter((obj: areasGetSchema) => {
+        if (params.is_not_license == 'True' && obj.owners.length != 0) {
+            return false;
+        }
+        if (obj.opi.filter((o: { name: string }) => o.name.includes(params.opi)).length == 0) {
+            return false;
+        }
+        if (!obj.deposit.name.includes(params.deposit_name)) {
+            return false;
+        }
+        if (!obj.deposit.okato.includes(params.okato_name)) {
+            return false;
+        }
 
-// MOCK
-// export async function fetchAreas(params: { is_not_license: string, opi: string }): Promise<Area[]> {
-//     const data = MOCK_DATA.filter((obj: any) => {
-//         if (params.is_not_license == 'True' && obj.owners.length != 0) {
-//             return false;
-//         }
-//         if (obj.opi.filter((o: any) => o.name.includes(params.opi)).length == 0) {
-//             return false;
-//         }
-//         return true;
-//     });
+        return true;
+    });
 
-//     return data.map((obj: any) => {
-//         const area = new Area();
+    return data.map((obj: areasGetSchema) => parse(obj));
+}
 
-//         area.name = obj.name;
-//         area.coordinates = obj.coordinates.map((c: {long: string, lat: string}) => [c.long, c.lat]);
-//         area.owners = obj.owners;
-//         area.opiList = obj.opi;
-
-//         return area;
-//     })
-// }
-
-const MOCK_DATA = [
+const MOCK_DATA: areasGetSchema[] = [
 
 ];
