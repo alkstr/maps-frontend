@@ -16,7 +16,7 @@ export const Polygon = (props: PolygonProps) => {
 
     return (
         <YMapFeature
-            geometry={{ type: "Polygon", coordinates: [props.area.coordinates] }}
+            geometry={{ type: "Polygon", coordinates: [props.area.polygon] }}
             style={{
                 stroke: [{ color: '#363636', width: 4 }],
                 fill: "rgba(54, 54, 54, 0.3)",

@@ -1,5 +1,5 @@
 import { LicenseInfo } from "./LicenseInfo";
-import { OPIInfo } from "./OPIInfo";
+import { MineralsInfo } from "./OPIInfo";
 import { SidebarState, useMapState } from "../../MapStateProvider";
 import { SidebarTab } from "../SidebarTab";
 import { DepositInfo } from "./DepositInfo";
@@ -13,10 +13,10 @@ export const ObjectInfo = () => {
             <div className="flex flex-col h-full gap-2 mb-4">
                 <CloseButton />
                 <div className="flex flex-col gap-2">
-                    <OPIInfo opiList={selectedArea?.opiList ?? []} />
-                    <DepositInfo deposit={selectedArea?.deposit ?? new Deposit()} />
-                    <LicenseInfo owners={selectedArea?.owners ?? []} />
-                    <ReservesInfo reserves={selectedArea?.reserves ?? new Reserves()} />
+                    <MineralsInfo minerals={selectedArea?.minerals ?? []} />
+                    <DepositInfo deposit={selectedArea?.deposit ?? new Deposit("", "")} />
+                    <LicenseInfo licenses={selectedArea?.licenses ?? []} />
+                    <ReservesInfo reserves={selectedArea?.reserves ?? new Reserves(0, 0, 0, 0)} />
                 </div>
             </div>
         </SidebarTab>
