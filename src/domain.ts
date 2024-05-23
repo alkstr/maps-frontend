@@ -8,6 +8,11 @@ export class Area {
     readonly minerals: Mineral[];
     readonly reserves: Reserves;
 
+    getPolygonCenter(): LngLat {
+        const sum = this.polygon.reduce((a: LngLat, b: LngLat) => [a[0] + b[0], a[1] + b[1]]);
+        return [sum[0] / this.polygon.length, sum[1] / this.polygon.length];
+    }
+
     constructor(name: string, polygon: LngLat[], deposit: Deposit, licenses: License[], minerals: Mineral[], reserves: Reserves) {
         this.name = name;
         this.polygon = polygon;

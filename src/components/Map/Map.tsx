@@ -24,7 +24,7 @@ export const Map = () => {
           .then((ars: Area[]) => {
             setAreas(ars);
             const names = new Set<string>();
-            ars.forEach(a => a.opiList.forEach(o => names.add(o.name)));
+            ars.forEach(a => a.minerals.forEach(o => names.add(o.name)));
             setOPINames(Array.from(names));
           })
           .catch(() => alert("Не удалось загрузить данные карты с сервера"));

@@ -1,21 +1,11 @@
 import { useMapsAPI } from "../YMapsAPIProvider";
 import { Area } from "@/domain";
 import { Polygon } from "./Polygon";
-import { LngLat } from "@yandex/ymaps3-types";
 import { SidebarState, useMapState } from "../MapStateProvider";
 
 const ZOOM_THRESHOLD = 10;
 
-function getPolygonCenter(polygon: LngLat[]): LngLat {
-    const sum = polygon.reduce((a: LngLat, b: LngLat) => [a[0] + b[0], a[1] + b[1]]);
-    return [sum[0] / polygon.length, sum[1] / polygon.length];
-}
-
-interface MarkerProps {
-    area: Area;
-}
-
-export const Marker = (props: MarkerProps) => {
+export const Marker = (props: { area: Area }) => {
     const { ymaps } = useMapsAPI();
     const { location } = useMapState();
 
@@ -26,11 +16,9 @@ export const Marker = (props: MarkerProps) => {
     } = ymaps;
 
     return (
-        <YMapMarker coordinates={getPolygonCenter(props.area.coordinates)} properties={{ hint: props.area.name }}>
+        <YMapMarker coordinates={props.area.getPolygonCenter()} properties={{ hint: props.area.name }}>
             <div className="relative w-4 h-2">
                 {location.zoom <= ZOOM_THRESHOLD ? <MarkerImage area={props.area} /> : <Polygon area={props.area} />}
-                {/* Название снизу */}
-                {/* <div className={"absolute w-48 top-0 -translate-x-1/2 text-base text-center " + styles.stroked}>{props.area.name}</div> */}
             </div>
         </YMapMarker>
     );
